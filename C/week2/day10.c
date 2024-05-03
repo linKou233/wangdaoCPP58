@@ -79,7 +79,6 @@ int main(){
     stack_push(s, 1);
     stack_push(s, 2);
     stack_push(s, 3);
-    stack_push(s, 4);
     printf("%d\n", stack_pop(s));
     printf("%d\n", stack_peek(s));
     stack_push(s, 5);
