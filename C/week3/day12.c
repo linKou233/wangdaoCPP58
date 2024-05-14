@@ -5,7 +5,7 @@
 
 void remove_duplicate_and_sort(char* str) {
     if (str == NULL) {
-        printf("错误：空字符串，请重新输入！");
+        printf("ERROR，the string is null, please input again!");
         exit(1);
     }
 
@@ -27,7 +27,7 @@ void remove_duplicate_and_sort(char* str) {
 
 int main() {
     char str[MAX]; 
-    printf("请输入想要去重并排序的字符串:");
+    printf("please input the string that you want to resort");
     scanf("%s", &str);
     remove_duplicate_and_sort(str);
     printf("%s", str);
