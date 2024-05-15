@@ -88,6 +88,27 @@ static void skipWhitespace() {
         case '\t':
             advance();
             break;
+        case '/':
+            if('/' == peekNext()){
+                while(peek() != '\n' )
+                advance();
+                break;
+            }
+            else if('*' == peekNext()){
+                advance();
+                while('/' != peek())
+                {
+                    if ('\n' == peek())
+                        scanner.line++;
+                    advance();
+                }
+                advance();
+                break;    
+            }
+            else {
+                advance();
+                break;
+            }
         case '\n':
         scanner.line++;
             advance();
@@ -126,13 +147,13 @@ static TokenType identifierType() {
         case 'c': 
             if(scanner.current - scanner.start > 1) {
                 switch (scanner.start[1]) {
-                    case 'a': return checkKeyword(2, 2, "se", TOKEN_CASE);
-                    case 'h': return checkKeyword(2, 2, "ar", TOKEN_CHAR);
-                    case 'o': 
-                        switch(scanner.start[3]) {
-                            case 's' : return checkKeyword(3, 2, "st", TOKEN_CONST);
-                            case 't' : return checkKeyword(4, 4, "inue", TOKEN_CONTINUE);
-                        }
+                case 'a': return checkKeyword(2, 2, "se", TOKEN_CASE);
+                case 'h': return checkKeyword(2, 2, "ar", TOKEN_CHAR);
+                case 'o': 
+                    switch(scanner.start[3]) {
+                    case 's' : return checkKeyword(3, 2, "st", TOKEN_CONST);
+                    case 't' : return checkKeyword(4, 4, "inue", TOKEN_CONTINUE);
+                    }
                 }
             }
             break;
@@ -141,7 +162,6 @@ static TokenType identifierType() {
                 switch (scanner.start[1]) {
                     case 'e': return checkKeyword(2, 5, "fault", TOKEN_DEFAULT);
                     case 'o': return checkKeyword(2, 4, "uble", TOKEN_DOUBLE);
-                    //少了一个对do的定义
                 }
             }
             break;
@@ -326,7 +346,7 @@ Token scanToken() {
             if (match('='))         return makeToken(TOKEN_GREATER_EQUAL);
             else if (match('>'))    return makeToken(TOKEN_GREAER_GREATER);
             else                    return makeToken(TOKEN_GREATER);
-        
+        case '#':                   return makeToken(TOKEN_PREPROCESSOR);
 
 
         case '"': return string();

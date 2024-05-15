@@ -88,6 +88,7 @@ static char* strtoken(Token token) {
     // 辅助Token
     case TOKEN_ERROR:           return "ERROR";
     case TOKEN_EOF:             return "EOF";
+    case TOKEN_PREPROCESSOR:    return "PREPROCESSOR";
     }
 }
 
