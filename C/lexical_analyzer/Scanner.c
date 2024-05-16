@@ -186,7 +186,7 @@ static TokenType identifierType() {
             if (scanner.current - scanner.start > 1) {
                 switch (scanner.start[1]) {
                     case 'f': return checkKeyword(2, 0, "", TOKEN_IF);
-                    case 'n': return checkKeyword(2, 2, "t", TOKEN_INT);
+                    case 'n': return checkKeyword(2, 1, "t", TOKEN_INT);
                 }
             }
             break;
@@ -206,7 +206,7 @@ static TokenType identifierType() {
                 }
             }
             break;
-        case 't': return checkKeyword(1, 7, "ypedef", TOKEN_TYPEDEF);
+        case 't': return checkKeyword(1, 6, "ypedef", TOKEN_TYPEDEF);
         case 'u':
             if (scanner.current - scanner.start > 1) {
                 switch (scanner.start[1]) {
