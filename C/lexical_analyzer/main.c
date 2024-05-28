@@ -6,7 +6,7 @@
  *                          COMMENT                                   *
  **********************************************************************/
 
-#include "scanner.c"
+#include "scanner.h"
 static char* strtoken(Token token) {
     switch (token.type) {
     // 单字符Token
